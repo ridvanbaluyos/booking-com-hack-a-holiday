@@ -64,7 +64,7 @@ return [
     |
     */
 
-    'timezone' => 'UTC',
+    'timezone' => 'Asia/Manila',
 
     /*
     |--------------------------------------------------------------------------
@@ -228,4 +228,24 @@ return [
 
     ],
 
+    'festivals' => [
+        '1' => [
+            'name' => 'MassKara Festival',
+            'start_date' => '2016-09-31',
+            'end_date' => '2016-10-02',
+            'city_ids' => ['-2409706'],
+        ],
+        '2' => [
+            'name' => 'Lanzones Festival',
+            'start_date' => '2016-10-17',
+            'end_date' => '2016-10-19',
+            'city_ids' => ['-2437208', '-2437207'],
+        ],
+        '3' => [
+            'name' => 'Higantes Festival',
+            'start_date' => '2016-11-21',
+            'end_date' => '2016-11-23',
+            'city_ids' => ['-2408558'],
+        ]
+    ],
 ];

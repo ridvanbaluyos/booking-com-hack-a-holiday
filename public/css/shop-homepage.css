@@ -22,12 +22,12 @@ body {
 }
 
 .caption {
-    height: 130px;
+    height: 135px;
     overflow: hidden;
 }
 
 .caption h4 {
-    white-space: nowrap;
+    /*white-space: nowrap;*/
 }
 
 .thumbnail img {
@@ -36,10 +36,31 @@ body {
 
 .ratings {
     padding-right: 10px;
-    padding-left: 10px;
-    color: #d17581;
+    color: #ffff00;
 }
 
+.price {
+    overflow: hidden;
+    padding-left: 10px;
+    color: #003580!important;
+}
+
+.soldout {
+    padding-left: 10px;
+}
+
+.soldout h4 {
+    color: #f00!important;
+}
+
+.choose-room {
+    padding-left: 10px;
+    padding-bottom: 10px;
+}
+
+.reviews {
+    color: #000000;
+}
 .thumbnail {
     padding: 0;
 }

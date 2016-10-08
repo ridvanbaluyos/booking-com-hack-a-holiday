@@ -12,3 +12,6 @@
 */
 
 Route::get('/', 'HomeController@getIndex');
+Route::get('/festivals/{ids}', 'HomeController@getFestivalHotelListings');
+
+Route::get('/hotels/{id}', 'HomeController@getHotelDetails');
