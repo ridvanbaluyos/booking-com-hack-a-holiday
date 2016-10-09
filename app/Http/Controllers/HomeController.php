@@ -11,6 +11,9 @@ class HomeController extends Controller
 {
     public function getIndex()
     {
+        return redirect()->action(
+            'HomeController@getHotelListings', ['id' => 1]
+        );
         // TODO: cache this
         $hotels = BookingCom::getHotels($params);
         $hotelIds = [];
