@@ -1,5 +1,5 @@
 @extends('layouts.main')
-@section('title', config('app.festivals.' . $data['festival_id'] . '.name'))
+@section('title', config('app.events.' . $data['event_id'] . '.name'))
 @section('content')
     <div class="row">
         <div class="col-md-3">
@@ -37,10 +37,42 @@
             </div>
 
             <div class="row">
+                <div class="col-md-9">
+                    <div class="btn-group" role="group" aria-label="...">
+                        <button type="button" class="btn btn-default">Our top pick first</button>
+                        <button type="button" class="btn btn-default">Lowest price first</button>
+                        <button type="button" class="btn btn-default">Distance from City</button>
+                        <div class="btn-group" role="group">
+                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Review Score
+                                <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li><a href="#">All Reviewers</a></li>
+                                <li><a href="#">Solo Travellers</a></li>
+                                <li><a href="#">Couples</a></li>
+                                <li><a href="#">Families</a></li>
+                                <li><a href="#">Group of Friends</a></li>
+                                <li><a href="#">Business Travellers</a></li>
+                            </ul>
+                        </div>
+                        <div class="btn-group" role="group">
+                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Stars
+                                <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li><a href="#">Stars [5→1]</a></li>
+                                <li><a href="#">Stars [1→5]</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
                 @foreach ($data['hotels'] as $hotel)
                     @if (isset($data['hotelDescriptionPhotos'][$hotel['hotel_id']][0]['url_original']))
                         <div class="col-sm-4 col-lg-4 col-md-4">
-                            <div class="thumbnail" style="height: 366px;">
+                            <div class="thumbnail" style="height: 410px;">
                                 <a href="/hotels/{{  $hotel['hotel_id'] }}">
                                     <img class="crop" src="{{ $data['hotelDescriptionPhotos'][$hotel['hotel_id']][0]['url_original']  }}" alt="" style="overflow: hidden;
     height: 150px;">
@@ -54,10 +86,11 @@
                                         @endforeach
                                     </div>
 
-                                    <p><small>{{ $hotel['address'] }}</small></p>
-                                    <p class="pull-right reviews">{{ $hotel['review_nr'] }} reviews</p>
-                                    <p>
-                                        Good {{ $hotel['review_score'] }}
+                                    <p><small><span class="glyphicon glyphicon-map-marker"></span> <a href="#">{{ $hotel['address'] }}</a></small></p>
+                                    <p class="pull-right reviews"><small>{{ $hotel['review_nr'] }} reviews</small></p>
+                                    <p><h4>
+                                        <span class="label @if ($hotel['review_score'] > 5) label-success @else label-warning @endif">Review Score: {{ $hotel['review_score'] }}</span>
+                                    </h4>
                                     </p>
                                 </div>
 
@@ -75,7 +108,7 @@
                                 @else
                                     <div class="soldout">
                                         <h4>Sold out</h4>
-                                        <small>We ran out of space at this property.</small>
+                                        <small>Sorry, we ran out of space at this property.</small>
                                     </div>
 
                                 @endif

@@ -5,11 +5,8 @@
         <div class="col-md-3">
             @include('layouts.sidebar')
         </div>
-
         <div class="col-md-9">
-
             <div class="thumbnail">
-
                 <div class="row carousel-holder">
                     <div class="col-md-12">
                         <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
@@ -38,7 +35,9 @@
                 <div class="caption-full">
                     <h1><a href="#">{{ $data['hotelDetails'][0]['name'] }}</a></h1>
                     <div class="ratings">
-                        <p class="pull-right">3 reviews</p>
+                        <p class="pull-right">
+                            <h3><span class="label label-warning">Review Score: {{ $data['hotelDetails'][0]['review_score'] }}</span></h3>
+                        </p>
                         <p>
                             @foreach (range(1, $data['hotelDetails'][0]['class']) as $x)
                                 <span class="glyphicon glyphicon-star"></span>
@@ -47,11 +46,10 @@
                         </p>
                     </div>
                     <small>{{ $data['hotelDetails'][0]['address'] }}</small>
-                    <p>See more snippets like these online store reviews at <a target="_blank" href="http://bootsnipp.com">Bootsnipp - http://bootsnipp.com</a>.</p>
-                    <p>Want to make these reviews work? Check out
-                        <strong><a href="http://maxoffsky.com/code-blog/laravel-shop-tutorial-1-building-a-review-system/">this building a review system tutorial</a>
-                        </strong>over at maxoffsky.com!</p>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
+                    <br/>
+                    <p>
+                        Conveniently administrate client-centered technology whereas wireless infrastructures. Dramatically disintermediate innovative results vis-a-vis B2B ideas. Quickly empower principle-centered information whereas installed base paradigms. Credibly strategize enterprise-wide processes.
+                    </p>
                 </div>
 
             </div>
@@ -73,6 +71,12 @@
                             <p>
                                 <small>
                                     {{ $blockAvailability['block_text']['description'] }}<br />
+                                    <strong>Policies</strong>
+                                    <ul>
+                                        @foreach($blockAvailability['block_text']['policies'] as $policy)
+                                            {{ $policy['content'] }}
+                                        @endforeach
+                                    </ul>
                                     <a href="#" data-toggle="tooltip" data-placement="bottom" title="{{ implode(', ', $blockAvailability['block_text']['facilities']) }}">
                                         Facilities
                                     </a>
@@ -90,6 +94,9 @@
                                 {{ $blockAvailability['incremental_price'][0]['currency'] }}
                                 {{ number_format($blockAvailability['incremental_price'][0]['price'], 2, '.', ',') }}
                             </h4>
+                            @if ($blockAvailability['breakfast_included'] == 1)
+                                <small><span class="glyphicon glyphicon-coffee-cup"></span>Breakfast included </small>
+                            @endif
                         </td>
                         <td>
                             <select class="form-control">
@@ -99,10 +106,24 @@
                                 @endforeach
                             </select>
                         </td>
-                        <td><a class="btn btn-success" id="reserve_button_{{ $blockAvailability['block_id'] }}">I'll Reserve</a></td>
+                        <td><a class="btn btn-primary" id="reserve_button_{{ $blockAvailability['block_id'] }}">I'll Reserve</a></td>
                     </tr>
                 @endforeach
             </table>
+
+            <div class="well">
+                <p class="lead">Good to know</p>
+                <table class="table table-hover">
+                    <tr>
+                        <th>Check-in</th>
+                        <td>{{ $data['hotelDetails'][0]['checkin']['from'] }} to {{ $data['hotelDetails'][0]['checkin']['to'] }} hours</td>
+                    </tr>
+                    <tr>
+                        <th>Check-out</th>
+                        <td>{{ $data['hotelDetails'][0]['checkout']['from'] }} to {{ $data['hotelDetails'][0]['checkout']['to'] }} hours</td>
+                    </tr>
+                </table>
+            </div>
         </div>
     </div>
 @stop

@@ -35,9 +35,9 @@ class HomeController extends Controller
         return view('home.index', ['data' => $data]);
     }
 
-    public function getFestivalHotelListings($id)
+    public function getHotelListings($id)
     {
-        $params['city_ids'] = implode(',', config('app.festivals.' . $id . '.city_ids'));
+        $params['city_ids'] = implode(',', config('app.events.' . $id . '.city_ids'));
 
         $hotels = BookingCom::getHotels($params);
         $hotelIds = [];
@@ -55,7 +55,7 @@ class HomeController extends Controller
 
         $hotelAvailability = BookingCom::getHotelAvailability($availabilityParams);
 
-        $data['festival_id'] = $id;
+        $data['event_id'] = $id;
         $data['hotels'] = $hotels;
         $data['hotelAvailability'] = $hotelAvailability;
         $data['hotelDescriptionPhotos'] = $hotelDescriptionPhotos;

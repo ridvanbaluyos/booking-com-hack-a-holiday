@@ -228,7 +228,7 @@ return [
 
     ],
 
-    'festivals' => [
+    'events' => [
         '1' => [
             'name' => 'MassKara Festival',
             'start_date' => '2016-09-31',
@@ -246,6 +246,18 @@ return [
             'start_date' => '2016-11-21',
             'end_date' => '2016-11-23',
             'city_ids' => ['-2408558'],
+        ],
+        '4' => [
+            'name' => 'Sinulog Festival',
+            'start_date' => '2017-01-14',
+            'end_date' => '2016-01-16',
+            'city_ids' => ['-2421883', '-2421883'],
+        ],
+        '5' => [
+            'name' => 'Laboracay',
+            'start_date' => '2017-04-28',
+            'end_date' => '2016-05-03',
+            'city_ids' => ['-2436593'],
         ]
-    ],
+    ]
 ];

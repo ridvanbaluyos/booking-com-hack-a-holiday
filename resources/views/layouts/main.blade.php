@@ -65,18 +65,22 @@
 <!-- /.container -->
 
 <div class="container">
-
     <hr>
-
     <!-- Footer -->
     <footer>
         <div class="row">
-            <div class="col-lg-12">
-                <p>Copyright &copy; Hack a Holiday - Manila</p>
-            </div>
+            <small>
+                <div class="col-md-6">Copyright &copy; <a href="https://workingatbooking.com/vacancies/hack-a-holiday-manilla-edition/">Hack a Holiday - Manila</a></div>
+                <div class="col-md-6">
+                    <span class="pull-right">Powered by:
+                        <a href="http://www.booking.com">
+                            <img src="{{ asset('images/logo_bookingcom.png') }}" alt="Booking.com Logo"/>
+                        </a>
+                    </span>
+                </div>
+            </small>
         </div>
     </footer>
-
 </div>
 <!-- /.container -->
 
