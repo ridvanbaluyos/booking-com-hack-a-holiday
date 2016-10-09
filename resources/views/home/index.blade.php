@@ -1,23 +1,9 @@
 @extends('layouts.main')
+@section('title', config('app.festivals.' . $data['festival_id'] . '.name'))
 @section('content')
-
     <div class="row">
-
         <div class="col-md-3">
-            <p class="lead">Festivals</p>
-            <div class="list-group">
-                @foreach (config('app.festivals') as $id=>$festival)
-                    <a href="/festivals/{{ $id }}" class="list-group-item">{{ $festival['name'] }} {{ date('Y', strtotime($festival['start_date'])) }}</a>
-                @endforeach
-            </div>
-
-            <p class="lead">Holidays</p>
-            <div class="list-group">
-                <a href="#" class="list-group-item">Sinulog</a>
-                <a href="#" class="list-group-item">Ati-Atihan</a>
-                <a href="#" class="list-group-item">Masskara</a>
-                <a href="#" class="list-group-item">Pahiyas</a>
-            </div>
+            @include('layouts.sidebar')
         </div>
 
         <div class="col-md-9">
@@ -79,12 +65,12 @@
                                     <div class="price">
                                         <h4>
                                             {{ $data['hotelAvailability'][$hotel['hotel_id']][0]['hotel_currency_code'] }}
-                                            {{ $data['hotelAvailability'][$hotel['hotel_id']][0]['price'] }}
+                                            {{ number_format($data['hotelAvailability'][$hotel['hotel_id']][0]['price'], 2, '.', ',') }}
                                         </h4>
                                     </div>
 
                                     <div class="choose-room">
-                                        <a class="btn btn-primary" href="#">Choose Room</a>
+                                        <a class="btn btn-primary" href="/hotels/{{  $hotel['hotel_id'] }}">Choose Room</a>
                                     </div>
                                 @else
                                     <div class="soldout">

@@ -1,14 +1,9 @@
 @extends('layouts.main')
-@section('title', '')
+@section('title', $data['hotelDetails'][0]['name'])
 @section('content')
     <div class="row">
         <div class="col-md-3">
-            <p class="lead">Shop Name</p>
-            <div class="list-group">
-                <a href="#" class="list-group-item active">Category 1</a>
-                <a href="#" class="list-group-item">Category 2</a>
-                <a href="#" class="list-group-item">Category 3</a>
-            </div>
+            @include('layouts.sidebar')
         </div>
 
         <div class="col-md-9">
@@ -19,23 +14,23 @@
                     <div class="col-md-12">
                         <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
                             <ol class="carousel-indicators">
-                                <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
-                                <li data-target="#carousel-example-generic" data-slide-to="1"></li>
-                                <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+                                @foreach ($data['hotelDescriptionPhotos'][$data['hotelDetails'][0]['hotel_id']] as $id=>$photos)
+                                    <li data-target="#carousel-example-generic" data-slide-to="{{ $id }}" @if ($id == 0) {{ 'class="active"' }} @endif></li>
+                                @endforeach
                             </ol>
                             <div class="carousel-inner">
-                                @foreach ($data['hotelDescriptionPhotos'] as $photos)
-                                <div class="item active">
-                                    <img class="slide-image" src="{{ $photos['url_max300'] }}" alt="">
-                                </div>
+                                @foreach ($data['hotelDescriptionPhotos'][$data['hotelDetails'][0]['hotel_id']] as $id=>$photos)
+                                    <div class="item @if ($id == 0) {{ 'active' }} @endif">
+                                        <img class="slide-image" src="{{ $photos['url_original'] }}" alt="">
+                                    </div>
                                 @endforeach
+                                <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
+                                    <span class="glyphicon glyphicon-chevron-left"></span>
+                                </a>
+                                <a class="right carousel-control" href="#carousel-example-generic" data-slide="next">
+                                    <span class="glyphicon glyphicon-chevron-right"></span>
+                                </a>
                             </div>
-                            <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
-                                <span class="glyphicon glyphicon-chevron-left"></span>
-                            </a>
-                            <a class="right carousel-control" href="#carousel-example-generic" data-slide="next">
-                                <span class="glyphicon glyphicon-chevron-right"></span>
-                            </a>
                         </div>
                     </div>
                 </div>
@@ -79,7 +74,7 @@
                                 <small>
                                     {{ $blockAvailability['block_text']['description'] }}<br />
                                     <a href="#" data-toggle="tooltip" data-placement="bottom" title="{{ implode(', ', $blockAvailability['block_text']['facilities']) }}">
-                                        Show Facilities
+                                        Facilities
                                     </a>
                                 </small>
                             </p>
@@ -90,16 +85,21 @@
                                 <span class="glyphicon glyphicon-user"></span>
                             @endforeach
                         </td>
-                        <td style="color: #390"><h4>{{ $blockAvailability['incremental_price'][0]['currency'] }} {{ $blockAvailability['incremental_price'][0]['price'] }}</h4></td>
+                        <td style="color: #390">
+                            <h4>
+                                {{ $blockAvailability['incremental_price'][0]['currency'] }}
+                                {{ number_format($blockAvailability['incremental_price'][0]['price'], 2, '.', ',') }}
+                            </h4>
+                        </td>
                         <td>
                             <select class="form-control">
                                 <option>0</option>
                                 @foreach (range(1, $blockAvailability['max_occupancy']) as $x)
-                                    <option>{{ $x }} ({{ $blockAvailability['incremental_price'][0]['currency'] }} {{ $x *  $blockAvailability['incremental_price'][0]['price']}})</option>
+                                    <option>{{ $x }} ({{ $blockAvailability['incremental_price'][0]['currency'] }} {{ number_format($x *  $blockAvailability['incremental_price'][0]['price'], 2, '.', ',') }})</option>
                                 @endforeach
                             </select>
                         </td>
-                        <td><a class="btn btn-success">I'll Reserve</a></td>
+                        <td><a class="btn btn-success" id="reserve_button_{{ $blockAvailability['block_id'] }}">I'll Reserve</a></td>
                     </tr>
                 @endforeach
             </table>

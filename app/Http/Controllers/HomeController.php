@@ -55,6 +55,7 @@ class HomeController extends Controller
 
         $hotelAvailability = BookingCom::getHotelAvailability($availabilityParams);
 
+        $data['festival_id'] = $id;
         $data['hotels'] = $hotels;
         $data['hotelAvailability'] = $hotelAvailability;
         $data['hotelDescriptionPhotos'] = $hotelDescriptionPhotos;

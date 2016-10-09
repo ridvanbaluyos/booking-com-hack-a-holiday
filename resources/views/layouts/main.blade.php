@@ -89,6 +89,10 @@
 <script type="text/javascript">
     $(function () {
         $('[data-toggle="tooltip"]').tooltip();
+
+        $('[id^=reserve_button_]').click(function() {
+            alert('Thanks for using booking.com!');
+        });
     });
 </script>
 </body>
