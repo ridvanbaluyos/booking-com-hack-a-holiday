@@ -8,3 +8,5 @@ This is my official entry to Booking.com's Hack a Holiday hackathon event held i
 URL: https://booking.ewoklabs.net
 
 Presentation: https://www.slideshare.net/secret/lL5fit3NA0wamu
+
+# API Authentication has already been revoked. Site will not work.
